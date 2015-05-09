@@ -39,7 +39,7 @@ public class DrwaingActivity extends Activity {
 		mPaint.setStyle(Paint.Style.STROKE);
 		mPaint.setStrokeJoin(Paint.Join.ROUND);
 		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeWidth(3);
+		mPaint.setStrokeWidth(10);
 	}
 
 	class DrawingView extends View {
@@ -52,7 +52,7 @@ public class DrwaingActivity extends Activity {
 			path = new Path();
 			mBitmap = Bitmap.createBitmap(820, 480, Bitmap.Config.ARGB_8888);
 			mCanvas = new Canvas(mBitmap);
-			this.setBackgroundColor(Color.BLACK);
+//			this.setBackgroundColor(Color.BLACK);
 		}
 
 		private ArrayList<PathWithPaint> _graphics1 = new ArrayList<PathWithPaint>();

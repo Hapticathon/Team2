@@ -1,9 +1,11 @@
 package com.kolczak.happytappy;
 
-import com.kolczak.happytappy.DrwaingActivity.DrawingView;
-
+import nxr.tpad.lib.TPadImpl;
+import nxr.tpad.lib.views.FrictionMapView;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,13 +14,32 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 
-    @Override
+    private FrictionMapView fricView;
+
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findLayoutElements();
+        initTPad();
     }
 
-    @Override
+    private void initTPad() {
+    	TPadImpl mTpad = new TPadImpl(this);
+    	fricView.setTpad(mTpad);
+		
+		// Load an image from resources
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spacialgrad);
+		
+		// Set the friction data bitmap to the test image
+		fricView.setDataBitmap(defaultBitmap);
+	}
+
+	private void findLayoutElements() {
+		this.fricView = (FrictionMapView) findViewById(R.id.activity_main_fraction_map_view);
+	}
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
