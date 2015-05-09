@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.view.Menu;
@@ -104,6 +105,17 @@ public class MainActivity extends Activity implements OnInitListener {
     	this.lines.get(this.currentLine).setTextColor(getResources().getColor(android.R.color.holo_orange_dark));
     	this.myTTS.speak(this.lines.get(this.currentLine).getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
     	this.currentLine++;
+    	
+    	if (this.currentLine == this.lines.size()) {
+    		Handler handler = new Handler();
+    		handler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					startActivity(new Intent(MainActivity.this, VideoActivity.class));
+				}
+			}, 1000);
+    	}
     }
     
     
@@ -133,6 +145,7 @@ public class MainActivity extends Activity implements OnInitListener {
 	}
 	
 	protected void onStop() {
+		super.onStop();
 		this.myTTS.shutdown();
 	}
 }

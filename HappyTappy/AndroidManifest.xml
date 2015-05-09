@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DrwaingActivity" />
+        <activity android:name = ".VideoActivity" />
     </application>
 
 </manifest>
