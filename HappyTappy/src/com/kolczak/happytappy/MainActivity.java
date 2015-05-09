@@ -1,5 +1,6 @@
 package com.kolczak.happytappy;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import nxr.tpad.lib.TPadImpl;
@@ -14,6 +15,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -22,6 +24,13 @@ public class MainActivity extends Activity implements OnInitListener {
     private static final int MY_DATA_CHECK_CODE = 0;
 	private FrictionMapView fricView;
 	private TextToSpeech myTTS;
+	private TextView poemLine1;
+	private TextView poemLine2;
+	private TextView poemLine3;
+	private TextView poemLine4;
+	private TextView poemLine5;
+	private int currentLine = 0;
+	private ArrayList<TextView> lines = new ArrayList<TextView>();
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,16 @@ public class MainActivity extends Activity implements OnInitListener {
 
 	private void findLayoutElements() {
 		this.fricView = (FrictionMapView) findViewById(R.id.activity_main_fraction_map_view);
+		this.poemLine1 = (TextView) findViewById(R.id.activity_main_line1);
+		this.lines.add(this.poemLine1);
+		this.poemLine2 = (TextView) findViewById(R.id.activity_main_line2);
+		this.lines.add(this.poemLine2);
+		this.poemLine3 = (TextView) findViewById(R.id.activity_main_line3);
+		this.lines.add(this.poemLine3);
+		this.poemLine4 = (TextView) findViewById(R.id.activity_main_line4);
+		this.lines.add(this.poemLine4);
+		this.poemLine5 = (TextView) findViewById(R.id.activity_main_line5);
+		this.lines.add(this.poemLine5);
 	}
 
 	@Override
@@ -77,8 +96,16 @@ public class MainActivity extends Activity implements OnInitListener {
     }
     
     public void startSpeaking(View view) {
-    	this.myTTS.speak("This app is amazing!", TextToSpeech.QUEUE_FLUSH, null);
+    	this.currentLine = 0;
+    	speakNext(null);
     }
+    
+    public void speakNext(View view) {
+    	this.lines.get(this.currentLine).setTextColor(getResources().getColor(android.R.color.holo_orange_dark));
+    	this.myTTS.speak(this.lines.get(this.currentLine).getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+    	this.currentLine++;
+    }
+    
     
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == MY_DATA_CHECK_CODE) {

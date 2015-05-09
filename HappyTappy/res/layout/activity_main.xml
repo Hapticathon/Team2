@@ -15,11 +15,53 @@
         android:text="Draw!"
         android:onClick="startDrawing"/>
     
-    <Button 
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    
+	    <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Speak!"
+	        android:onClick="startSpeaking"/>
+	    
+	    <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Next"
+	        android:onClick="speakNext"/>
+    
+    </LinearLayout>
+    
+    <TextView 
+        android:id="@+id/activity_main_line1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Speak!"
-        android:onClick="startSpeaking"/>
+        android:text="This is a dog."/>
+    
+    <TextView 
+        android:id="@+id/activity_main_line2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Draw his head,"/>
+    
+    <TextView 
+        android:id="@+id/activity_main_line3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Draw his torso,"/>
+    
+    <TextView 
+        android:id="@+id/activity_main_line4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Draw his tail."/>
+    
+    <TextView 
+        android:id="@+id/activity_main_line5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Look! He is alive!"/>
     
     <nxr.tpad.lib.views.FrictionMapView
         android:id="@+id/activity_main_fraction_map_view"
