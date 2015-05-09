@@ -15,6 +15,12 @@
         android:text="Draw!"
         android:onClick="startDrawing"/>
     
+    <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speak!"
+        android:onClick="startSpeaking"/>
+    
     <nxr.tpad.lib.views.FrictionMapView
         android:id="@+id/activity_main_fraction_map_view"
         android:layout_width="match_parent"
