@@ -79,18 +79,19 @@
         android:layout_width="250dp"
 		android:layout_height="match_parent"
 		android:layout_gravity="center_horizontal" >
-        
-	    <nxr.tpad.lib.views.FrictionMapView
+        <!-- 
+        <nxr.tpad.lib.views.FrictionMapView
 	        android:id="@+id/activity_main_fraction_map_view"
 	        android:layout_width="250dp"
-	        android:layout_height="wrap_content" />
+	        android:layout_height="wrap_content"
+	        android:background="#0000" /> -->
+       
 	    
-	    <ImageView
+	    <com.kolczak.happytappy.DrawingView
+	        android:id="@+id/activity_main_fraction_map_view"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
-	        android:layout_gravity="center_horizontal"
-	        android:scaleType="fitCenter"
-	        android:src="@drawable/dotted_dog" />
-
+	        />
+	    
 	</FrameLayout>
 </LinearLayout>

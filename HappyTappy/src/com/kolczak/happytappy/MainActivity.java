@@ -16,6 +16,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class MainActivity extends Activity implements OnInitListener {
 	private TextView poemLine5;
 	private int currentLine = 0;
 	private ArrayList<TextView> lines = new ArrayList<TextView>();
+	
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class MainActivity extends Activity implements OnInitListener {
         setContentView(R.layout.activity_main);
         findLayoutElements();
         initTPad();
+        
         checkTTS();
     }
 
@@ -47,16 +50,19 @@ public class MainActivity extends Activity implements OnInitListener {
     	checkTTSIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
     	startActivityForResult(checkTTSIntent, MY_DATA_CHECK_CODE);
 	}
-
+    
 	private void initTPad() {
     	TPadImpl mTpad = new TPadImpl(this);
     	fricView.setTpad(mTpad);
 		
 		// Load an image from resources
-		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.hapic_background);
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.haptic_background_1);
 		
 		// Set the friction data bitmap to the test image
 		fricView.setDataBitmap(defaultBitmap);
+		fricView.setDisplayShowing(false);
+		fricView.setDataDisplayed(false);
+//		fricView.setBackgroundResource(android.R.color.white);
 	}
 
 	private void findLayoutElements() {
