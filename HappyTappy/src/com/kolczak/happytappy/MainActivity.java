@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements OnInitListener {
     	fricView.setTpad(mTpad);
 		
 		// Load an image from resources
-		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spacialgrad);
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.hapic_background);
 		
 		// Set the friction data bitmap to the test image
 		fricView.setDataBitmap(defaultBitmap);
