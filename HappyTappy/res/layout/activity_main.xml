@@ -47,7 +47,7 @@
                 android:id="@+id/activity_main_line1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This is a dog.\nDraw his head," />
+                android:text="This is a dog. \nDraw his head," />
 
             <TextView
                 android:id="@+id/activity_main_line2"

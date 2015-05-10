@@ -44,12 +44,6 @@ public class MainActivity extends Activity implements OnInitListener, IDrawingSt
         
         checkTTS();
     }
-
-//	@Override
-//	protected void onStart () {
-//		super.onStart();
-//		
-//	}
 	
     private void checkTTS() {
     	Intent checkTTSIntent = new Intent();
@@ -130,7 +124,15 @@ public class MainActivity extends Activity implements OnInitListener, IDrawingSt
 	        if(myTTS.isLanguageAvailable(Locale.US)==TextToSpeech.LANG_AVAILABLE) {
 	        	this.myTTS.setLanguage(Locale.US);
 	        }
-	        startSpeaking();
+	        Handler handler = new Handler();
+	        handler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					startSpeaking();
+				}
+			}, 1000);
+	        
 	    }
 		else if (initStatus == TextToSpeech.ERROR) {
 		    Toast.makeText(this, "Sorry! Text To Speech failed...", Toast.LENGTH_LONG).show();
