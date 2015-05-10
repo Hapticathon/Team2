@@ -15,23 +15,26 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-class DrawingView extends FrictionMapView {
+class DrawingFrictionMapView extends FrictionMapView {
 	private Path path;
 	private Bitmap mBitmap;
 	private Canvas mCanvas;
 	private Paint mPaint;
+	private IDrawingStageListener drawingStageListener;
+	private int currentDrawingStage = 0;
 
-	public DrawingView(Context context, AttributeSet attrs) {
+	public DrawingFrictionMapView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 	
-	public DrawingView(Context context) {
+	public DrawingFrictionMapView(Context context) {
 		super(context, null);
 		init();
 	}
 
 	private void init() {
+		this.setDrawingCacheEnabled(true);
 		initPaint();
 		path = new Path();
 		mBitmap = Bitmap.createBitmap(820, 480, Bitmap.Config.ARGB_8888);
@@ -56,10 +59,7 @@ class DrawingView extends FrictionMapView {
 		super.onTouchEvent(event);
 		PathWithPaint pp = new PathWithPaint();
 		
-//		this.bitmap = this.getDrawingCache(true);
-//		int color = bitmap.getPixel((int)event.getX(), (int)event.getY());
-//		Log.d("KONRAD", "color: " + color);
-		
+		detectTouchedColor(event);
 		
 		mCanvas.drawPath(path, mPaint);
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -75,11 +75,45 @@ class DrawingView extends FrictionMapView {
 		return true;
 	}
 
+	private void detectTouchedColor(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
+			this.buildDrawingCache();
+			this.bitmap = this.getDrawingCache(true);
+			int color = bitmap.getPixel((int)event.getX(), (int)event.getY());
+			Log.d("KONRAD", "color: " + color);
+			changeDrawingStage(color);
+		}
+	}
+
+	private void changeDrawingStage(int color) {
+		if (this.drawingStageListener == null)
+			return;
+		
+		if (color == -16711936 && this.currentDrawingStage == 0)
+		{
+			this.currentDrawingStage = 1;
+			this.drawingStageListener.onDrawingStageDone(1);
+			Log.d("KONRAD", "First drawing stage done.");		
+		}
+		else if (color == -16721920 && this.currentDrawingStage == 1)
+		{
+			this.currentDrawingStage = 2;
+			this.drawingStageListener.onDrawingStageDone(2);
+			Log.d("KONRAD", "Second drawing stage done.");		
+		}
+		else if (color == -16721812 && this.currentDrawingStage == 2)
+		{
+			this.currentDrawingStage = 3;
+			this.drawingStageListener.onDrawingStageDone(3);
+			Log.d("KONRAD", "Third drawing stage done.");
+		}
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		
-		Drawable d = getResources().getDrawable(R.drawable.dotted_dog2);
+		Drawable d = getResources().getDrawable(R.drawable.dotted_dog3);
 		d.setBounds(0, 0, getWidth(), getHeight());
 		d.draw(canvas);
 		
@@ -90,6 +124,14 @@ class DrawingView extends FrictionMapView {
 		}
 	}
 	
+	public IDrawingStageListener getDrawingStageListener() {
+		return drawingStageListener;
+	}
+
+	public void setDrawingStageListener(IDrawingStageListener drawingStageListener) {
+		this.drawingStageListener = drawingStageListener;
+	}
+
 	public class PathWithPaint {
 		private Path path;
 
@@ -110,5 +152,10 @@ class DrawingView extends FrictionMapView {
 		public void setmPaint(Paint mPaint) {
 			this.mPaint = mPaint;
 		}
+	}
+	
+	public interface IDrawingStageListener
+	{
+		public void onDrawingStageDone(int stageId);
 	}
 }

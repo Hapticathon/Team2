@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <LinearLayout
+        <!-- <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="speakNext"
                 android:text="Next" />
-        </LinearLayout>
+        </LinearLayout> -->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -47,28 +47,22 @@
                 android:id="@+id/activity_main_line1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This is a dog." />
+                android:text="This is a dog.\nDraw his head," />
 
             <TextView
                 android:id="@+id/activity_main_line2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Draw his head," />
+                android:text="Draw his torso," />
 
             <TextView
                 android:id="@+id/activity_main_line3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Draw his torso," />
-
-            <TextView
-                android:id="@+id/activity_main_line4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Draw his tail." />
 
             <TextView
-                android:id="@+id/activity_main_line5"
+                android:id="@+id/activity_main_line4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Look! He is alive!" />
@@ -87,7 +81,7 @@
 	        android:background="#0000" /> -->
        
 	    
-	    <com.kolczak.happytappy.DrawingView
+	    <com.kolczak.happytappy.DrawingFrictionMapView
 	        android:id="@+id/activity_main_fraction_map_view"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
