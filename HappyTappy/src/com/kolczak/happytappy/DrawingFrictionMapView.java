@@ -113,7 +113,7 @@ class DrawingFrictionMapView extends FrictionMapView {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		
-		Drawable d = getResources().getDrawable(R.drawable.dotted_dog3);
+		Drawable d = getResources().getDrawable(R.drawable.dotted_dog4);
 		d.setBounds(0, 0, getWidth(), getHeight());
 		d.draw(canvas);
 		
